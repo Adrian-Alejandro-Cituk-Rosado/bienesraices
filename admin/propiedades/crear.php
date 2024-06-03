@@ -1,11 +1,9 @@
 <?php
+
 ini_set('display_errors', "On");
-require '../../includes/funciones.php';
-$auth=estaAutenticado();
-if(!$auth){
-    header('Location: /');
-}
-require '../../includes/config/database.php';
+require '../../includes/app.php';
+use App\Propiedad;
+estaAutenticado();
 $db = conectarDB();
 //Consulta para pbtener los vendedores
 $consulta = "SELECT * FROM vendedores";
