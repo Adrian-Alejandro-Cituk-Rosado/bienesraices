@@ -8,7 +8,9 @@
             "email": "adrian.citukrosado@cbtis72.edu.mx"
         }
     ],
-    "require": {},
+    "require": {
+        "intervention/image": "2"
+    },
     "autoload": {
         "psr-4": {
             "App\\": "./classes"
