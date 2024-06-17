@@ -43,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $propiedad->setImagen($nombreImagen);
     }
 
+    
     // Revisar que el arreglo de errores esté vacío
     if (empty($errores)) {
         // Almacenar la imagen si existe
