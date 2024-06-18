@@ -9,6 +9,13 @@
     border: 1px solid darken($gris, 10);
     margin-bottom: 2rem;
 
+    img {
+        width: 100%;
+        height: 400px;
+        max-height: 400px; // Puedes ajustar esta altura según tus necesidades
+        object-fit: cover;
+    }
+
     .contenido-anuncio {
         padding: 3rem;
         
@@ -18,39 +25,31 @@
         margin: 0;
     }
  
-}
-.precio {
-    color: $verde;
-    font-weight: $bold;
-    font-size: 2rem;
-}
-
-.iconos-caracteristicas {
-    display: flex;
-    list-style: none;
-    padding: 1;
-    max-width: 40rem;
-
-    li {
-        flex: 1;
-        display: flex;
-
-        img {
-            flex:  0 0 3rem;
-            margin-right: 1rem;
-        }
-        p {
-            font-weight: $black;
-        }
+    .precio {
+        color: $verde;
+        font-weight: $bold;
+        font-size: 2rem;
     }
-}
-.contenedor-anuncios{
-    width: 450;
-    height: auto;
-    .tamaño-imagen{
-        padding: 30px 30px 30px 30px;
-        background-size: cover;
-        max-width: 450;
-        max-height: 300px;
+
+    .iconos-caracteristicas {
+        display: flex;
+        list-style: none;
+        padding: 0;  // Asegúrate de que el padding sea 0 si no quieres espacio adicional
+        max-width: 40rem;
+
+        li {
+            flex: 1;
+            display: flex;
+            align-items: center;  // Alinea los elementos verticalmente
+
+            img {
+                flex: 0 0 3rem;
+                height: 3rem;
+                margin-right: 1rem;
+            }
+            p {
+                font-weight: $black;
+            }
+        }
     }
 }

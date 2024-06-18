@@ -11,6 +11,9 @@
     &.exito{
         background-color: $verde;
     }
+    &.actualizado{
+        background-color: $verdeOscuro;
+    }
 }
 table.propiedades{
     margin-top: 4rem;
