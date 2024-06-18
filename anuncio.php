@@ -1,9 +1,7 @@
 <?php 
-
 ini_set('display_errors', 1);
 require 'includes/app.php';
 use App\Propiedad;
-
 
 $id = $_GET['id'];
 $id = filter_var($id, FILTER_VALIDATE_INT);
@@ -12,22 +10,7 @@ if(!$id){
     header('Location: /');
 }
 
-
-
-require 'includes/app.php';
-$db = conectarDB();
-// Consultar
-$query =  "SELECT * FROM propiedades WHERE id = ${id}";
-//Leer los resultados
- $resultado = mysqli_query($db, $query);
- if(!$resultado->num_rows){
-    header('Location: /');
- }
- $propiedad = mysqli_fetch_assoc($resultado);
-
-
 $propiedad = Propiedad::find($id);
-
 
 
 incluirTemplate('header'); ?>
@@ -54,15 +37,12 @@ incluirTemplate('header'); ?>
                     <p><?php echo $propiedad->habitaciones;?></p>
                 </li>
             </ul>
-
-
-            <?php echo $propiedad['descripcion'];?>
-
 <p class="contenido-anuncio">
             <?php echo $propiedad->descripcion;?>
         </p>
-
         </div>
+        <a href="anuncios.php" class="boton-verde">Volver</a>
     </main>
+    
 
     <?php incluirTemplate('footer'); ?>

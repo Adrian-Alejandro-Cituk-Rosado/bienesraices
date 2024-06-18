@@ -3,16 +3,12 @@
 require 'includes/app.php';
 
 
-incluirTemplate('header'); 
-
-?>
-
+incluirTemplate('header'); ?>
 
     <main class="contenedor seccion">
-        <h1>Nosotros</h1>
-
+        <h1>Titulo Página</h1>
     </main>
+
     <?php 
 
-incluirTemplate('footer'); 
-?>
+incluirTemplate('footer'); ?>

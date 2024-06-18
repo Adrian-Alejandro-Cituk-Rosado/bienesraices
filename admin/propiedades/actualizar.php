@@ -11,22 +11,21 @@ estaAutenticado();
 $id = $_GET['id'];
 $id = filter_var($id, FILTER_VALIDATE_INT);
 
-if (!$id) {
+if(!$id){
     header('Location: /admin');
 }
 
 // Obtener los datos de la propiedad
 $propiedad = Propiedad::find($id);
+//Consulta para obtener todos los vendedores
+$vendedores = Vendedor::all();
 
-// Consultar para obtener los vendedores
-$consulta = "SELECT * FROM vendedores";
-$resultado = mysqli_query($db, $consulta);
 
 // Arreglo con mensajes de errores
 $errores = Propiedad::getErrores();
 
 // Ejecutar el código después de que el usuario envía el formulario
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
     // Asignar los atributos
     $args = $_POST['propiedad'];
     $propiedad->sincronizar($args);
@@ -35,34 +34,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errores = $propiedad->validar();
 
     // Subida de archivos
-    // Generar un nombre único
-    $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
-
-    if ($_FILES['propiedad']['tmp_name']['imagen']) {
+    if ($_FILES['propiedad']['tmp_name']['imagen']) { 
+        // Generar un nombre único
+        $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+        // Crear la imagen con Intervention Image
         $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800, 600);
+        // Borrar la imagen anterior
+        if ($propiedad->imagen) {
+            $propiedad->borrarImagen();
+        }
+        // Asignar el nuevo nombre de la imagen
         $propiedad->setImagen($nombreImagen);
     }
 
-    
     // Revisar que el arreglo de errores esté vacío
     if (empty($errores)) {
         // Almacenar la imagen si existe
         if (isset($image)) {
+            // Guardar la nueva imagen
             $image->save(CARPETA_IMAGENES . $nombreImagen);
         }
 
-        // Guardar la propiedad en la base de datos
         $propiedad->guardar();
     }
 }
 
-incluirTemplate('header');
+incluirTemplate('header'); 
 ?>
 
 <main class="contenedor seccion">
     <h1>Actualizar Propiedad</h1>
     <a href="/admin" class="boton boton-verde">Volver</a>
-    <?php foreach ($errores as $error): ?>
+    <?php foreach($errores as $error): ?>
         <div class="alerta error">
             <?php echo $error; ?>
         </div>
@@ -74,4 +77,6 @@ incluirTemplate('header');
     </form>
 </main>
 
-<?php incluirTemplate('footer'); ?>
+<?php 
+incluirTemplate('footer'); 
+?>

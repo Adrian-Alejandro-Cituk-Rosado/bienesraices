@@ -1,19 +1,19 @@
 {
-    "name": "adrian_alejandro/bienesraices",
-    "description": "Creando un proyecto con POO",
+    "name": "user/bienesraices",
+    "description": "Creando un Proyecto con POO",
     "type": "project",
     "authors": [
         {
-            "name": "Adrian Cituk",
-            "email": "adrian.citukrosado@cbtis72.edu.mx"
+            "name": "joseluis",
+            "email": "jose.aguilartun@cbtis72.edu.mx"
         }
     ],
+    "autoload": {
+        "psr-4":{
+            "App\\":"./classes"
+        }
+    },
     "require": {
         "intervention/image": "2"
-    },
-    "autoload": {
-        "psr-4": {
-            "App\\": "./classes"
-        }
     }
 }
